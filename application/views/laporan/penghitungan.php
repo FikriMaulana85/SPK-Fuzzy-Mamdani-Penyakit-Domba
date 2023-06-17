@@ -56,40 +56,61 @@
                                         foreach ($fuzzyfikasi as $fuzzyfikasi) :
 
                                         ?>
-                                        <tr>
-                                            <td>Input Range Gejala (<?= $fuzzyfikasi->kode_gejala ?>) :
-                                                <?= $fuzzyfikasi->bobot_gejala ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><?= NamaAnggotaRingan($fuzzyfikasi->bobot_gejala) ?> :
-                                                <?= AnggotaRingan($fuzzyfikasi->bobot_gejala) ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td><?= NamaAnggotaParah($fuzzyfikasi->bobot_gejala) ?> :
-                                                <?= AnggotaParah($fuzzyfikasi->bobot_gejala) ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td><?= NamaAnggotaSangatParah($fuzzyfikasi->bobot_gejala) ?> :
-                                                <?= AnggotaSangatParah($fuzzyfikasi->bobot_gejala) ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>=============================================================</td>
-                                        </tr>
+                                            <tr>
+                                                <td>Input Range Gejala (<?= $fuzzyfikasi->kode_gejala ?>) :
+                                                    <?= $fuzzyfikasi->bobot_gejala ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><?= NamaAnggotaRingan($fuzzyfikasi->bobot_gejala) ?> :
+                                                    <?= AnggotaRingan($fuzzyfikasi->bobot_gejala) ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><?= NamaAnggotaParah($fuzzyfikasi->bobot_gejala) ?> :
+                                                    <?= AnggotaParah($fuzzyfikasi->bobot_gejala) ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><?= NamaAnggotaSangatParah($fuzzyfikasi->bobot_gejala) ?> :
+                                                    <?= AnggotaSangatParah($fuzzyfikasi->bobot_gejala) ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>=============================================================</td>
+                                            </tr>
                                         <?php
                                             $data_update_anggota = [
                                                 'ringan' => AnggotaRingan($fuzzyfikasi->bobot_gejala),
                                                 'agak_parah' => AnggotaParah($fuzzyfikasi->bobot_gejala),
                                                 'parah' => AnggotaSangatParah($fuzzyfikasi->bobot_gejala),
-                                                'level_1' => NamaAnggotaRingan($fuzzyfikasi->bobot_gejala),
-                                                'level_2' => NamaAnggotaParah($fuzzyfikasi->bobot_gejala),
-                                                'level_3' => NamaAnggotaSangatParah($fuzzyfikasi->bobot_gejala),
+                                                // 'level_1' => NamaAnggotaRingan($fuzzyfikasi->bobot_gejala),
+                                                // 'level_2' => NamaAnggotaParah($fuzzyfikasi->bobot_gejala),
+                                                // 'level_3' => NamaAnggotaSangatParah($fuzzyfikasi->bobot_gejala),
                                             ];
                                             $this->db->where("kode_gejala", $fuzzyfikasi->kode_gejala);
                                             $this->db->where("kode_peternakan", $this->uri->segment(3));
                                             $this->db->update("tmp_gejala", $data_update_anggota);
                                         endforeach; ?>
+
+                                        <?php
+                                        $fuzzyfikasi1 = $this->db->select("*")->from("tmp_gejala")->where("kode_peternakan", $this->uri->segment(3))->order_by("kode_gejala ASC")->get()->result();
+                                        ?>
+                                        <tr>
+                                            <td>Input Range Gejala (<?= $fuzzyfikasi1[3]->kode_gejala ?>) :
+                                                <?= $fuzzyfikasi1[3]->bobot_gejala ?> = 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>=============================================================</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Input Range Gejala (<?= $fuzzyfikasi1[4]->kode_gejala ?>) :
+                                                <?= $fuzzyfikasi1[4]->bobot_gejala ?> = 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>=============================================================</td>
+                                        </tr>
+
                                         <tr>
                                             <td>
                                                 <h6>RULE</h6>
@@ -108,8 +129,8 @@
                                         $no = 1;
                                         foreach ($rules as $rule) :
                                         ?>
-                                        <tr>
-                                            <?php
+                                            <tr>
+                                                <?php
                                                 if (count($get_kode_gejala) > 2) {
 
                                                     $nilai_min = min(
@@ -132,14 +153,14 @@
                                                         1
                                                     );
                                                 ?>
-                                            <td><?= $rule->kode_rules . " " . $rule->kode_gejala1 . " " . strtoupper($rule->level_gejala1) . " AND " . $rule->kode_gejala2 . " " . strtoupper($rule->level_gejala2) . " AND " . $rule->kode_gejala3 . " " . strtoupper($rule->level_gejala3) . " AND " . $rule->kode_gejala4 . " " . strtoupper($rule->level_gejala4) . " AND " . $rule->kode_gejala5 . " " . strtoupper($rule->level_gejala5) .  " THEN " . strtoupper($rule->nama_penyakit)
+                                                    <td><?= $rule->kode_rules . " " . $rule->kode_gejala1 . " " . strtoupper($rule->level_gejala1) . " AND " . $rule->kode_gejala2 . " " . strtoupper($rule->level_gejala2) . " AND " . $rule->kode_gejala3 . " " . strtoupper($rule->level_gejala3) . " AND " . $rule->kode_gejala4 . " " . strtoupper($rule->level_gejala4) . " AND " . $rule->kode_gejala5 . " " . strtoupper($rule->level_gejala5) .  " THEN " . strtoupper($rule->nama_penyakit)
                                                         ?>
-                                                :
-                                                <?= min($this->analisa_model->GetNilaiTmp($rule->kode_gejala1, $rule->level_gejala1, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala2, $rule->level_gejala2, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala3, $rule->level_gejala3, $this->uri->segment(3)), 1, 1) ?>
-                                            </td>
-                                            <?php } ?>
-                                            </td>
-                                        </tr>
+                                                        :
+                                                        <?= min($this->analisa_model->GetNilaiTmp($rule->kode_gejala1, $rule->level_gejala1, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala2, $rule->level_gejala2, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala3, $rule->level_gejala3, $this->uri->segment(3)), 1, 1) ?>
+                                                    </td>
+                                                <?php } ?>
+                                                </td>
+                                            </tr>
                                         <?php
                                             $data = [
                                                 'id_tmp_rules' => null,
@@ -173,12 +194,12 @@
                                                                     $no++;
                                                                 }
                                                                 ?>) =
-                                                <?= $this->analisa_model->Agregasi($this->uri->segment(3))->row()->max ?>
+                                                <?= number_format($this->analisa_model->Agregasi($this->uri->segment(3))->max, 2) ?>
                                             </td>
                                         </tr>
                                         <?php
-                                        $agmin = $this->analisa_model->Agregasi($this->uri->segment(3))->row()->min;
-                                        $agmax = $this->analisa_model->Agregasi($this->uri->segment(3))->row()->max;
+                                        $agmin = number_format($this->analisa_model->Agregasi($this->uri->segment(3))->min, 2);
+                                        $agmax = number_format($this->analisa_model->Agregasi($this->uri->segment(3))->max, 2);
                                         $a1 = area($agmin);
                                         $a2 = area($agmax);
                                         $l1 = luas1($agmin, $a2);
@@ -323,8 +344,7 @@
                                         </tr>
                                 </table>
                                 <div class="col-sm-12 d-flex justify-content-center">
-                                    <a href="<?= base_url("laporan/penghitungan_pdf/" . $this->uri->segment(3)) ?>"
-                                        class="btn btn-success btn-sm">Download</a>
+                                    <a href="<?= base_url("laporan/penghitungan_pdf/" . $this->uri->segment(3)) ?>" class="btn btn-success btn-sm">Download</a>
                                 </div>
                             </div>
                 </section>

@@ -108,7 +108,7 @@ class Analisa_model extends CI_Model
         $this->db->from("tmp_rules");
         $this->db->where("kode_peternakan", $kode_peternakan);
         $this->db->where("bobot_rules >", 0.0);
-        return $this->db->get();
+        return $this->db->get()->row();
     }
 
     public function kesimpulan($kode_peternakan)

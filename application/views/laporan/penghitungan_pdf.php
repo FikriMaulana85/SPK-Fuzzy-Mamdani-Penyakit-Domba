@@ -65,6 +65,27 @@
                     $this->db->where("kode_peternakan", $this->uri->segment(3));
                     $this->db->update("tmp_gejala", $data_update_anggota);
                 endforeach; ?>
+
+                <?php
+                $fuzzyfikasi1 = $this->db->select("*")->from("tmp_gejala")->where("kode_peternakan", $this->uri->segment(3))->order_by("kode_gejala ASC")->get()->result();
+                ?>
+                <tr>
+                    <td>Input Range Gejala (<?= $fuzzyfikasi1[3]->kode_gejala ?>) :
+                        <?= $fuzzyfikasi1[3]->bobot_gejala ?> = 1
+                    </td>
+                </tr>
+                <tr>
+                    <td>=============================================================</td>
+                </tr>
+                <tr>
+                    <td>Input Range Gejala (<?= $fuzzyfikasi1[4]->kode_gejala ?>) :
+                        <?= $fuzzyfikasi1[4]->bobot_gejala ?> = 1
+                    </td>
+                </tr>
+                <tr>
+                    <td>=============================================================</td>
+                </tr>
+
                 <tr>
                     <td>
                         <h6>RULE</h6>
@@ -148,12 +169,12 @@
                                             $no++;
                                         }
                                         ?>) =
-                        <?= $this->analisa_model->Agregasi($this->uri->segment(3))->row()->max ?>
+                        <?= number_format($this->analisa_model->Agregasi($this->uri->segment(3))->max, 2) ?>
                     </td>
                 </tr>
                 <?php
-                $agmin = $this->analisa_model->Agregasi($this->uri->segment(3))->row()->min;
-                $agmax = $this->analisa_model->Agregasi($this->uri->segment(3))->row()->max;
+                $agmin = number_format($this->analisa_model->Agregasi($this->uri->segment(3))->min, 2);
+                $agmax = number_format($this->analisa_model->Agregasi($this->uri->segment(3))->max, 2);
                 $a1 = area($agmin);
                 $a2 = area($agmax);
                 $l1 = luas1($agmin, $a2);

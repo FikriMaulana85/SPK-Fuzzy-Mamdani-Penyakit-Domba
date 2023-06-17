@@ -56,9 +56,9 @@
                                                 'ringan' => AnggotaRingan($fuzzyfikasi->bobot_gejala),
                                                 'agak_parah' => AnggotaParah($fuzzyfikasi->bobot_gejala),
                                                 'parah' => AnggotaSangatParah($fuzzyfikasi->bobot_gejala),
-                                                'level_1' => NamaAnggotaRingan($fuzzyfikasi->bobot_gejala),
-                                                'level_2' => NamaAnggotaParah($fuzzyfikasi->bobot_gejala),
-                                                'level_3' => NamaAnggotaSangatParah($fuzzyfikasi->bobot_gejala),
+                                                // 'level_1' => NamaAnggotaRingan($fuzzyfikasi->bobot_gejala),
+                                                // 'level_2' => NamaAnggotaParah($fuzzyfikasi->bobot_gejala),
+                                                // 'level_3' => NamaAnggotaSangatParah($fuzzyfikasi->bobot_gejala),
                                             ];
                                             $this->db->where("kode_gejala", $fuzzyfikasi->kode_gejala);
                                             $this->db->where("kode_peternakan", $this->uri->segment(3));
@@ -119,8 +119,8 @@
                                         endforeach; ?>
 
                                         <?php
-                                        $agmin = $this->analisa_model->Agregasi($this->uri->segment(3))->row()->min;
-                                        $agmax = $this->analisa_model->Agregasi($this->uri->segment(3))->row()->max;
+                                        $agmin = $this->analisa_model->Agregasi($this->uri->segment(3))->min;
+                                        $agmax = $this->analisa_model->Agregasi($this->uri->segment(3))->max;
                                         $a1 = area($agmin);
                                         $a2 = area($agmax);
                                         $l1 = luas1($agmin, $a2);
