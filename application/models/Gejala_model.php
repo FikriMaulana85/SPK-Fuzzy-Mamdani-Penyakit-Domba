@@ -20,6 +20,15 @@ class Gejala_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function listlimit()
+    {
+        $this->db->select("*");
+        $this->db->from("tbl_gejala");
+        $this->db->limit("3");
+        $this->db->order_by("id_gejala ASC");
+        return $this->db->get()->result();
+    }
+
     public function show($id_gejala)
     {
         $this->db->select("*");

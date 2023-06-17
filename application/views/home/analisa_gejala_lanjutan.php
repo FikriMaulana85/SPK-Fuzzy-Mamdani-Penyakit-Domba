@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <!-- Sidebar -->
-        <?php $this->load->view("layout/sidebar"); ?>
+        <?php $this->load->view("layout/sidebar_home"); ?>
         <!-- Close Sidebar -->
         <div id="main">
             <header class="mb-3">
@@ -32,33 +32,65 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <code class="highlighter-rouge">*Note : Masukan nilai 1-100 untuk Range Gejala dengan intensitas nilai 10-30 Rendah,
-                                    30-60 Sedang ,60-90 Tinggi</code>
+                                <code class="highlighter-rouge">*Note : Masukan nilai 1-10 untuk Range Gejala</code>
                                 <form class="form-group" method="POST" action="<?= base_url("analisa/update_gejala") ?>">
                                     <table class="table table-responsive">
                                         <thead>
                                             <tr>
-                                                <th>Checkist</th>
+                                                <th>Kode Gejala</th>
                                                 <th>Gejala</th>
-                                                <th>Range Gejala</th>
+                                                <th>Range</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
                                             foreach ($lists as $list) : ?>
                                                 <tr>
-                                                    <td>
-                                                        <?= $no++ ?>
-                                                    </td>
+                                                    <td><?= $list->kode_gejala ?></td>
                                                     <td>
                                                         <?= $list->desc_gejala ?>
                                                     </td>
                                                     <td>
                                                         <input type="hidden" name="kode_gejala[]" value="<?= $list->kode_gejala ?>" readonly>
-                                                        <input class="form-control" type="text" name="range_gejala[]" placeholder="Input Nilai 1-100">
+                                                        <input class="form-control" type="text" name="range_gejala[]" placeholder="Input Nilai 1-10" required>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
+                                            <tr>
+                                                <td>G04</td>
+                                                <td>
+                                                    Tempat area gejala ditemukan
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" name="kode_gejala[]" value="G04" onclick="return false">
+                                                    <select class="form-control" name="range_gejala[]" required>
+                                                        <option value="" selected>Pilih</option>
+                                                        <option value="Area Mulut">Area Mulut</option>
+                                                        <option value="Area Tubuh Selain Mulut">Area Tubuh Selain Mulut
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>G05</td>
+                                                <td>
+                                                    Gejala lain yang ditemukan
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" name="kode_gejala[]" value="G05" readonly>
+                                                    <select class="form-control" name="range_gejala[]" required>
+                                                        <option value="" selected>Pilih</option>
+                                                        <option value="Bulu Kasar, Tebal, Menjadi Rontok Dan Sering Menggaruk">
+                                                            Bulu Kasar, Tebal, Menjadi Rontok Dan Sering Menggaruk
+                                                        </option>
+                                                        <option value="Selaput Lendir Mengalami Erosi Dan Pembengkakan Di Area Lesi">
+                                                            Selaput Lendir Mengalami Erosi Dan Pembengkakan Di Area Lesi
+                                                        <option value="Adanya Larva Lalat Di Lesi Yang Terbuka">Adanya
+                                                            Larva Lalat Di Lesi Yang Terbuka
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <button type="submit" class="btn btn-primary mr-2">Simpan Range Gejala</button>

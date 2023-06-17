@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pendaftaran Peternakan</title>
+    <title>Sistem Pakar Diagnosa Penyakit Pada Domba</title>
     <?php $this->load->view("layout/css"); ?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -12,7 +12,7 @@
 <body>
     <div id="app">
         <!-- Sidebar -->
-        <?php $this->load->view("layout/sidebar"); ?>
+        <?php $this->load->view("layout/sidebar_home"); ?>
         <!-- Close Sidebar -->
         <div id="main">
             <header class="mb-3">
@@ -28,7 +28,8 @@
                     <div class="row">
                         <h3 class="text-center">Sistem Pakar Diagnosa Penyakit Pada Domba</h3>
                         <p class="text-center">
-                            Sistem pakar diagnosa penyakit pada domba digunakan untuk mendiagnosa gejala-gejala penyakit
+                            Sistem pakar diagnosa penyakit kulit pada domba digunakan untuk mendiagnosa gejala-gejala
+                            penyakit
                             yang terdapat pada domba, dengan menggunakan metode Metode Fuzzy Mamdani yang merupakan
                             salah satu bagian dari Fuzzy
                             Inference System yang berguna untuk penarikan kesimpulan atau suatu keputusan terbaik dalam

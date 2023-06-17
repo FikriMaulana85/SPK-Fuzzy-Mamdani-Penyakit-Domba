@@ -13,7 +13,7 @@
 <body>
     <div id="app">
         <!-- Sidebar -->
-        <?php $this->load->view("layout/sidebar"); ?>
+        <?php $this->load->view("layout/sidebar_home"); ?>
         <!-- Close Sidebar -->
         <div id="main">
             <header class="mb-3">
@@ -44,14 +44,14 @@
                                     <tbody>
                                         <?php $no = 1;
                                         foreach ($lists as $list) : ?>
-                                        <tr>
-                                            <td>
-                                                <?= $no++; ?>
-                                            </td>
-                                            <td>
-                                                <?= $list->desc_gejala ?>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>
+                                                    <?= $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $list->desc_gejala ?>
+                                                </td>
+                                            </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -74,30 +74,30 @@
     <!-- Close Main JS -->
 
     <script>
-    // Tampilkan Tabel
-    $(document).ready(function() {
-        show_table();
-    });
-
-    function show_table() {
-        $('#tabelgejala').DataTable({
-            "bDestroy": true,
-            "processing": true,
-            "responsive": true,
-            "order": [],
-            "columnDefs": [{
-                "targets": [0],
-                "className": "dt-left",
-                "targets": "_all",
-                "orderable": false,
-            }, ],
-            "aLengthMenu": [
-                [5, 10, 25, 50, 100, -1],
-                [5, 10, 25, 50, 100, "All"]
-            ],
-            "iDisplayLength": 10,
+        // Tampilkan Tabel
+        $(document).ready(function() {
+            show_table();
         });
-    }
+
+        function show_table() {
+            $('#tabelgejala').DataTable({
+                "bDestroy": true,
+                "processing": true,
+                "responsive": true,
+                "order": [],
+                "columnDefs": [{
+                    "targets": [0],
+                    "className": "dt-left",
+                    "targets": "_all",
+                    "orderable": false,
+                }, ],
+                "aLengthMenu": [
+                    [5, 10, 25, 50, 100, -1],
+                    [5, 10, 25, 50, 100, "All"]
+                ],
+                "iDisplayLength": 10,
+            });
+        }
     </script>
 </body>
 

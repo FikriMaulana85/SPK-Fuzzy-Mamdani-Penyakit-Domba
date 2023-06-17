@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <!-- Sidebar -->
-        <?php $this->load->view("layout/sidebar"); ?>
+        <?php $this->load->view("layout/sidebar_home"); ?>
         <!-- Close Sidebar -->
         <div id="main">
             <header class="mb-3">
@@ -33,28 +33,27 @@
                             </div>
                             <div class="card-body">
                                 <code class="highlighter-rouge">*Note : Pilih Gejala yang diderita domba.</code>
-                                <form class="form-group" method="POST"
-                                    action="<?= base_url("analisa/create_gejala") ?>">
+                                <form class="form-group" method="POST" action="<?= base_url("analisa/create_gejala") ?>">
                                     <table class="table table-responsive">
                                         <thead>
                                             <tr>
                                                 <th>Checkist</th>
+                                                <th>Kode Gejala</th>
                                                 <th>Gejala</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
                                             foreach ($lists as $list) : ?>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="form-check-input" name="check_list[]"
-                                                        alt="Checkbox" data-kode_gejala="<?= $list->kode_gejala ?>"
-                                                        value="<?= $list->kode_gejala ?>">
-                                                </td>
-                                                <td>
-                                                    <?= $list->desc_gejala ?>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" class="form-check-input" name="check_list[]" alt="Checkbox" data-kode_gejala="<?= $list->kode_gejala ?>" value="<?= $list->kode_gejala ?>" checked onclick="return false">
+                                                    </td>
+                                                    <td><?= $list->kode_gejala ?></td>
+                                                    <td>
+                                                        <?= $list->desc_gejala ?>
+                                                    </td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -79,30 +78,30 @@
 
 </body>
 <script>
-// Tampilkan Tabel
-$(document).ready(function() {
-    show_table();
-});
-
-function show_table() {
-    $('#tabelgejala').DataTable({
-        "bDestroy": true,
-        "processing": true,
-        "responsive": true,
-        "order": [],
-        "columnDefs": [{
-            "targets": [0],
-            "className": "dt-left",
-            "targets": "_all",
-            "orderable": false,
-        }, ],
-        "aLengthMenu": [
-            [5, 10, 25, 50, 100, -1],
-            [5, 10, 25, 50, 100, "All"]
-        ],
-        "iDisplayLength": 50,
+    // Tampilkan Tabel
+    $(document).ready(function() {
+        show_table();
     });
-}
+
+    function show_table() {
+        $('#tabelgejala').DataTable({
+            "bDestroy": true,
+            "processing": true,
+            "responsive": true,
+            "order": [],
+            "columnDefs": [{
+                "targets": [0],
+                "className": "dt-left",
+                "targets": "_all",
+                "orderable": false,
+            }, ],
+            "aLengthMenu": [
+                [5, 10, 25, 50, 100, -1],
+                [5, 10, 25, 50, 100, "All"]
+            ],
+            "iDisplayLength": 50,
+        });
+    }
 </script>
 
 </html>

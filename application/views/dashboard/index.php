@@ -33,7 +33,8 @@
                         <div class="row">
                             <h3 class="text-center">Sistem Pakar Diagnosa Penyakit Pada Domba</h3>
                             <p class="text-center">
-                                Sistem pakar diagnosa penyakit pada domba digunakan untuk mendiagnosa gejala-gejala
+                                Sistem pakar diagnosa penyakit kulit pada domba digunakan untuk mendiagnosa
+                                gejala-gejala
                                 penyakit
                                 yang terdapat pada domba, dengan menggunakan metode Metode Fuzzy Mamdani yang merupakan
                                 salah satu bagian dari Fuzzy

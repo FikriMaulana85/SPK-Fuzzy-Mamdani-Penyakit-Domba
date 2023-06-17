@@ -101,9 +101,9 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a href="<?= base_url("relasi"); ?>" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                        <span>Relasi</span>
+                    <a href="<?= base_url("rules"); ?>" class='sidebar-link'>
+                        <i class="bi bi-card-list"></i>
+                        <span>Rules</span>
                     </a>
                 </li>
 

@@ -13,7 +13,7 @@
 <body>
     <div id="app">
         <!-- Sidebar -->
-        <?php $this->load->view("layout/sidebar"); ?>
+        <?php $this->load->view("layout/sidebar_home"); ?>
         <!-- Close Sidebar -->
         <div id="main">
             <header class="mb-3">

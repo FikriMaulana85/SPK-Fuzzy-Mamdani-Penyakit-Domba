@@ -16,7 +16,7 @@
             <div class="col-lg-6 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="index.html"><img src="<?= base_url() ?>assets/images/logo/logo.svg" alt="Logo"></a>
+                        <a href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/images/logo/logo.svg" alt="Logo"></a>
                     </div>
                     <h1 class="auth-title">FUZZY MAMDANI</h1>
                     <p class="text-sm">Sistem Pakar Diagnosa Penyakit Pada Domba</p>

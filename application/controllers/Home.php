@@ -8,8 +8,10 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('dashboard_model');
         $this->load->model('analisa_model');
+        $this->load->model('rules_model');
         $this->load->model('penyakit_model');
         $this->load->model('gejala_model');
+        $this->load->helper('fuzzy');
         $this->load->model('login_model');
     }
 
@@ -73,7 +75,7 @@ class Home extends CI_Controller
         $this->pdf->set_option('isHtml5ParserEnabled', true);
         $this->pdf->set_option('isRemoteEnabled', true);
         $this->pdf->loadHtml(ob_get_clean());
-        $this->pdf->setPaper('A4', 'landscape');
+        $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Hasil-Analisa-$kode_peternakan-$date.pdf";
         $this->pdf->load_view('home/analisa_hasil_pdf', $data);
     }

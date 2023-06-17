@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Gejala</title>
+    <title>Data Laporan</title>
     <!-- Main CSS -->
     <?php $this->load->view("layout/css"); ?>
     <!-- Close Main CSS -->
@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col">
-                                    <h6 class="card-title">List Data User</h6>
+                                    <h6 class="card-title">List Data Laporan</h6>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -67,9 +67,9 @@
                                                     <?= $list->nilai_fuzzy ?>
                                                 </td>
                                                 <td>
-                                                    <?= $list->nama_penyakit ?> (<?= $list->kode_penyakit ?>)
+                                                    <?= $list->nama_penyakit ?>
                                                 </td>
-                                                <td><a href="<?= base_url("home/analisa_hasil/$list->kode_peternakan") ?>" target="_blank">
+                                                <td><a href="<?= base_url("laporan/penghitungan/$list->kode_peternakan") ?>" target="_blank">
                                                         <i class="bi bi-eye text-warning"></i></a>
                                             </tr>
                                         <?php endforeach; ?>
@@ -118,43 +118,6 @@
                 "iDisplayLength": 5,
             });
         }
-
-        $(document).delegate('.hapusgejala', 'click', function() {
-            Swal.fire({
-                    title: "Yakin ingin menghapus?",
-                    text: "Data yang telah dihapus tidak dapat dikembalikan !",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    cancelButtonText: 'Tidak',
-                })
-                .then((willDelete) => {
-                    if (willDelete.isConfirmed) {
-                        const id = $(this).attr('id_gejala');
-                        $.ajax({
-                            method: 'post',
-                            url: "<?= base_url() ?>gejala/delete",
-                            data: {
-                                id_gejala: id,
-                            },
-                            success: function(result) {
-                                json = JSON.parse(result);
-                                Swal.fire({
-                                    icon: json.status,
-                                    text: json.message,
-                                    timer: 1500,
-                                });
-                                setTimeout(function() {
-                                    window.location = "<?= base_url() ?>gejala";
-                                }, 1600);
-                            }
-                        });
-                    }
-
-                });
-        });
     </script>
 </body>
 

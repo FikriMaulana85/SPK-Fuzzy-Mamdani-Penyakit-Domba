@@ -9,6 +9,7 @@ class Analisa extends CI_Controller
         $this->load->model('analisa_model');
         $this->load->model('penyakit_model');
         $this->load->model('gejala_model');
+        $this->load->helper('fuzzy');
         $this->load->model('login_model');
     }
 
