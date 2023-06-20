@@ -4,7 +4,7 @@
 //RUMUS ANGGOTA
 function AnggotaRingan($x)
 {
-    if ($x <= 3) {
+    if ($x <= 3 && $x > 0) {
         return 1;
     } elseif ($x <= 4.5 && $x > 3) {
         return number_format((4.5 - $x) / (4.5 - 3), 2);
@@ -52,24 +52,24 @@ function NamaAnggotaRingan($x)
 function NamaAnggotaParah($x)
 {
     if ($x <= 3 || $x >= 7.5) {
-        return "Parah";
+        return "Agak Parah";
     } elseif (3 <= $x && $x <= 4.5) {
-        return "Parah";
+        return "Agak Parah";
     } elseif (4.5 <= $x && $x <= 6) {
-        return "Parah";
+        return "Agak Parah";
     } elseif (6 <= $x && $x <= 7.5) {
-        return "Parah";
+        return "Agak Parah";
     }
 }
 
 function NamaAnggotaSangatParah($x)
 {
     if ($x <= 6) {
-        return "Sangat Parah";
+        return "Parah";
     } elseif (6 <= $x && $x <= 7.5) {
-        return "Sangat Parah";
+        return "Parah";
     } elseif ($x >= 7.5) {
-        return "Sangat Parah";
+        return "Parah";
     }
 }
 

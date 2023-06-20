@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <code class="highlighter-rouge">*Note : Masukan nilai 1-10 untuk Range Gejala</code>
+                                <code class="highlighter-rouge">*Note : Masukan nilai 0-10 untuk Range Gejala</code>
                                 <form class="form-group" method="POST" action="<?= base_url("analisa/update_gejala") ?>">
                                     <table class="table table-responsive">
                                         <thead>
@@ -52,11 +52,11 @@
                                                     </td>
                                                     <td>
                                                         <input type="hidden" name="kode_gejala[]" value="<?= $list->kode_gejala ?>" readonly>
-                                                        <input class="form-control" type="text" name="range_gejala[]" placeholder="Input Nilai 1-10" required>
+                                                        <input class="form-control" type="text" name="range_gejala[]" placeholder="Input Nilai 0-10" required>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>G04</td>
                                                 <td>
                                                     Tempat area gejala ditemukan
@@ -90,7 +90,7 @@
                                                         </option>
                                                     </select>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                     <button type="submit" class="btn btn-primary mr-2">Simpan Range Gejala</button>

@@ -20,7 +20,7 @@ class Analisa_model extends CI_Model
         $this->db->from("tmp_gejala");
         $this->db->join('tbl_gejala', 'tbl_gejala.kode_gejala = tmp_gejala.kode_gejala');
         $this->db->where("kode_peternakan", $this->session->userdata('KODE_PETERNAKAN'));
-        $this->db->limit("3");
+        $this->db->limit("8");
         return $this->db->get()->result();
     }
 
@@ -98,8 +98,12 @@ class Analisa_model extends CI_Model
     public function GetNilaiTmp($kode_gejala, $level_gejala, $user)
     {
         // echo $level_gejala;
-        $bobot = strtolower(str_replace(" ", "_", $level_gejala));
-        return $this->db->select("*")->from("tmp_gejala")->where("kode_gejala", $kode_gejala)->where("kode_peternakan", $user)->get()->row()->$bobot;
+        if ($level_gejala != "Tidak Ada") {
+            $bobot = strtolower(str_replace(" ", "_", $level_gejala));
+            return $this->db->select("*")->from("tmp_gejala")->where("kode_gejala", $kode_gejala)->where("kode_peternakan", $user)->get()->row()->$bobot;
+        } else {
+            return 0;
+        }
     }
 
     public function Agregasi($kode_peternakan)

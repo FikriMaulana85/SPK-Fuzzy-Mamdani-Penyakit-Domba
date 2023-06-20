@@ -1,14 +1,14 @@
 <?php
 
 
-$x = 4;
+$x = 4.2;
 $y = 5;
 
-// echo "Ringan : " . AnggotaRingan($x);
-// echo "\n\r";
-// echo "Parah : " . AnggotaParah($x);
-// echo "\n\r";
-// echo "Sangat Parah : " . AnggotaSangatParah($x);
+echo "Ringan : " . AnggotaRingan($x);
+echo "\n\r";
+echo "Parah : " . AnggotaParah($x);
+echo "\n\r";
+echo "Sangat Parah : " . AnggotaSangatParah($x);
 // echo "\n\r";
 // echo findMin(AnggotaRingan($x), AnggotaRingan($y));
 // echo "\n\r";
@@ -102,11 +102,11 @@ function luas2($minrule, $maxrule, $a1, $a2)
 // {
 // }
 
-for ($i = 0; $i < 10; $i++) {
-    $data = ["Ringan", "Parah", "Sangat Parah"];
-    foreach ($data as $d) {
-        echo $d;
-        echo "===============";
-        echo "\n\r";
-    }
-}
+// for ($i = 0; $i < 10; $i++) {
+//     $data = ["Ringan", "Parah", "Sangat Parah"];
+//     foreach ($data as $d) {
+//         echo $d;
+//         echo "===============";
+//         echo "\n\r";
+//     }
+// }

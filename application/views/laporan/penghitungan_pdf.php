@@ -141,7 +141,7 @@
                         'id_tmp_rules' => null,
                         'kode_peternakan' => $this->uri->segment(3),
                         'kode_rules' => $rule->kode_rules,
-                        'bobot_rules' => number_format($nilai_min, 2),
+                        'bobot_rules' => min($this->analisa_model->GetNilaiTmp($rule->kode_gejala1, $rule->level_gejala1, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala2, $rule->level_gejala2, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala3, $rule->level_gejala3, $this->uri->segment(3)), 1, 1),
                     ];
                     // echo $this->rules_model->TmpRulesByID($this->uri->segment(3))->num_rows();
                     if ($this->rules_model->TmpRulesByID($this->uri->segment(3))->num_rows() <= count($rules)) {
@@ -184,7 +184,18 @@
                 $m2 = momentum2($a1, $a2);
                 $m3 = momentum3($a2);
                 $centroid = centroid($m1, $m2, $m3, $l1, $l2, $l3);
-                $kesimpulan =  $this->db->select("*")->from("tbl_hasil")->join('tbl_penyakit', 'tbl_penyakit.nama_penyakit = tbl_hasil.nama_penyakit')->join('tbl_peternakan', 'tbl_peternakan.kode_peternakan = tbl_hasil.kode_peternakan')->where("tbl_hasil.kode_peternakan", $this->uri->segment(3))->get()->row();
+                 $data_simpan_hasil = [
+                                            'id_hasil' => null,
+                                            'kode_peternakan' => $this->uri->segment(3),
+                                            'nama_penyakit' => $rule->nama_penyakit,
+                                            'nilai_fuzzy' => $centroid,
+                                            'tanggal_hasil' => date("Y-m-d")
+                                        ];
+                                        $check_hasil = $this->db->select("*")->from("tbl_hasil")->where("kode_peternakan", $this->uri->segment(3))->get()->num_rows();
+                                        if ($check_hasil == 0) {
+                                            $this->db->insert("tbl_hasil", $data_simpan_hasil);
+                                        }
+                                        $kesimpulan =  $this->db->select("*")->from("tbl_hasil")->join('tbl_penyakit', 'tbl_penyakit.nama_penyakit = tbl_hasil.nama_penyakit')->join('tbl_peternakan', 'tbl_peternakan.kode_peternakan = tbl_hasil.kode_peternakan')->where("tbl_hasil.kode_peternakan", $this->uri->segment(3))->get()->row();
                 ?>
                 <tr>
                     <td>=============================================================</td>

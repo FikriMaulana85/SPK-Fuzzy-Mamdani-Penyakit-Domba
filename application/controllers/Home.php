@@ -34,7 +34,7 @@ class Home extends CI_Controller
 
     public function pendaftaran()
     {
-        $data["kode_peternakan"] = sprintf("%03s", $this->dashboard_model->TotalPeternakan() + 1);
+        $data["kode_peternakan"] = sprintf("%01s", $this->dashboard_model->TotalPeternakan() + 1);
         $this->load->view("home/daftar", $data);
     }
 
@@ -58,9 +58,10 @@ class Home extends CI_Controller
     {
         if (!$kode_peternakan)
             redirect(base_url("home/pendaftaran"));
-        $data["list_relasi_group"] = $this->analisa_model->relasi_group()->result();
-        $data["total_relasi_group"] = $this->analisa_model->relasi_group()->num_rows();
-        $this->load->view("home/analisa_hasil", $data);
+        // $data["list_relasi_group"] = $this->analisa_model->relasi_group()->result();
+        // $data["total_relasi_group"] = $this->analisa_model->relasi_group()->num_rows();
+        $this->load->view("home/analisa_hasil");
+        	$this->session->unset_userdata('KODE_PETERNAKAN');
     }
 
     public function analisa_hasil_pdf($kode_peternakan)
@@ -69,14 +70,14 @@ class Home extends CI_Controller
             redirect(base_url("home/pendaftaran"));
         $this->load->library('pdf');
         $date = date("Y-m-d_H_i_s");
-        $data["list_relasi_group"] = $this->analisa_model->relasi_group()->result();
-        $data["total_relasi_group"] = $this->analisa_model->relasi_group()->num_rows();
+        // $data["list_relasi_group"] = $this->analisa_model->relasi_group()->result();
+        // $data["total_relasi_group"] = $this->analisa_model->relasi_group()->num_rows();
         // print_r($this->transaksi_pembelian_model->laporan());
         $this->pdf->set_option('isHtml5ParserEnabled', true);
         $this->pdf->set_option('isRemoteEnabled', true);
         $this->pdf->loadHtml(ob_get_clean());
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Hasil-Analisa-$kode_peternakan-$date.pdf";
-        $this->pdf->load_view('home/analisa_hasil_pdf', $data);
+        $this->pdf->load_view('home/analisa_hasil_pdf');
     }
 }
