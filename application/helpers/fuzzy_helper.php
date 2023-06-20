@@ -1,6 +1,6 @@
 <?php
 
-
+error_reporting(0);
 //RUMUS ANGGOTA
 function AnggotaRingan($x)
 {
@@ -40,7 +40,7 @@ function AnggotaSangatParah($x)
 
 function NamaAnggotaRingan($x)
 {
-    if ($x <= 3) {
+    if ($x <= 3 && $x > 0) {
         return "Ringan";
     } elseif ($x <= 4.5 && $x > 3) {
         return "Ringan";
@@ -59,6 +59,8 @@ function NamaAnggotaParah($x)
         return "Agak Parah";
     } elseif (6 <= $x && $x <= 7.5) {
         return "Agak Parah";
+    } else {
+        return "Agak Parah";
     }
 }
 
@@ -69,6 +71,8 @@ function NamaAnggotaSangatParah($x)
     } elseif (6 <= $x && $x <= 7.5) {
         return "Parah";
     } elseif ($x >= 7.5) {
+        return "Parah";
+    } else {
         return "Parah";
     }
 }
@@ -83,6 +87,10 @@ function findMin($x, $y)
     }
 }
 
+
+function NameOfMember($r, $a, $p)
+{
+}
 //RUMUS ANGGREGASI MENCARI NILAI MAX DARI RULE
 // AGREGASI = MAx(DARI RULE)
 
@@ -91,7 +99,11 @@ function findMin($x, $y)
 //A1 = NILAI MIN DARI AGREGASI
 function area($a1)
 {
-    return $a1 * (4.5 - 3) + 3;
+    if ($a1 != 0) {
+        return $a1 * (4.5 - 3) + 3;
+    } else {
+        return 0;
+    }
 }
 
 //A2 = NILAI MAX DARI AGREGASI
@@ -148,7 +160,12 @@ function momentum3($a2)
     $a1 = (0.5 * pow(10, 2)); //50
     $a2 = (0.5 * pow($a2, 2));
     $h1 = $a1 - $a2;
-    return number_format(0.67 * $h1, 7);
+    if ($a2 != 0) {
+
+        return number_format(0.67 * $h1, 7);
+    } else {
+        return 0;
+    }
     // return $a2;
 }
 
@@ -156,5 +173,9 @@ function centroid($m1, $m2, $m3, $l1, $l2, $l3)
 {
     $hm = $m1 + $m2 + $m3;
     $hl = $l1 + $l2 + $l3;
-    return number_format($hm / $hl, 2) / 10 * 100;
+    if ($hl != null || $hm != null) {
+        return number_format($hm / $hl, 2) / 10 * 100;
+    } else {
+        return 0;
+    }
 }

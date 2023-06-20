@@ -61,7 +61,7 @@ class Home extends CI_Controller
         // $data["list_relasi_group"] = $this->analisa_model->relasi_group()->result();
         // $data["total_relasi_group"] = $this->analisa_model->relasi_group()->num_rows();
         $this->load->view("home/analisa_hasil");
-        	$this->session->unset_userdata('KODE_PETERNAKAN');
+        $this->session->unset_userdata('KODE_PETERNAKAN');
     }
 
     public function analisa_hasil_pdf($kode_peternakan)
@@ -79,5 +79,7 @@ class Home extends CI_Controller
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "Hasil-Analisa-$kode_peternakan-$date.pdf";
         $this->pdf->load_view('home/analisa_hasil_pdf');
+
+        // $this->load->view('home/analisa_hasil_pdf');
     }
 }
