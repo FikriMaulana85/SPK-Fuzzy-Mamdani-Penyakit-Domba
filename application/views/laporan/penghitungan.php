@@ -10,6 +10,11 @@
     <title>Hasil Analisa</title>
     <?php $this->load->view("layout/css"); ?>
 </head>
+<style>
+table {
+    width: 50% !important;
+}
+</style>
 
 <body>
     <div id="app">
@@ -36,7 +41,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- <code class="highlighter-rouge">*Note : Pilih Gejala yang diderita domba.</code> -->
-                                <table class="table table-borderless">
+                                <table class="table table-borderless table-responsive" width="500px">
                                     <tbody>
                                         <tr>
                                             <td>
