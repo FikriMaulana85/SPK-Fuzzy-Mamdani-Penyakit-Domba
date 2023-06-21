@@ -34,4 +34,16 @@ class Analisa extends CI_Controller
             redirect(base_url("home/pendaftaran"));
         $this->analisa_model->update_gejala();
     }
+
+    public function delete($kode_peternakan)
+    {
+        if ($kode_peternakan == null)
+            redirect(base_url("laporan"));
+        $this->analisa_model->delete($kode_peternakan);
+    }
+
+    public function reset()
+    {
+        $this->analisa_model->reset();
+    }
 }

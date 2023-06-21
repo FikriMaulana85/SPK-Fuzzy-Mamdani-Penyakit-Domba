@@ -35,9 +35,9 @@
                             </div>
                             <div class="card-body">
                                 <?php if ($this->session->flashdata('pesan') != null) { ?>
-                                    <p class="text-center">
-                                        <?= $this->session->flashdata('pesan'); ?>
-                                    </p>
+                                <p class="text-center">
+                                    <?= $this->session->flashdata('pesan'); ?>
+                                </p>
                                 <?php } ?>
                                 <table class="table table-responsive" id="tabellaporan">
                                     <thead>
@@ -53,25 +53,30 @@
                                     <tbody>
                                         <?php $no = 1;
                                         foreach ($lists as $list) : ?>
-                                            <tr>
-                                                <td>
-                                                    <?= $no++; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $list->nama_peternak ?>
-                                                </td>
-                                                <td>
-                                                    <?= $list->nama_peternakan ?>
-                                                </td>
-                                                <td>
-                                                    <?= $list->nilai_fuzzy ?>
-                                                </td>
-                                                <td>
-                                                    <?= $list->nama_penyakit ?>
-                                                </td>
-                                                <td><a href="<?= base_url("laporan/penghitungan/$list->kode_peternakan") ?>" target="_blank">
-                                                        <i class="bi bi-eye text-warning"></i></a>
-                                            </tr>
+                                        <tr>
+                                            <td>
+                                                <?= $no++; ?>
+                                            </td>
+                                            <td>
+                                                <?= $list->nama_peternak ?>
+                                            </td>
+                                            <td>
+                                                <?= $list->nama_peternakan ?>
+                                            </td>
+                                            <td>
+                                                <?= $list->nilai_fuzzy ?>
+                                            </td>
+                                            <td>
+                                                <?= $list->nama_penyakit ?>
+                                            </td>
+                                            <td><a href="<?= base_url("laporan/penghitungan/$list->kode_peternakan") ?>"
+                                                    target="_blank">
+                                                    <i class="bi bi-eye text-warning"></i></a> |
+                                                <a href="<?= base_url("analisa/delete/$list->kode_peternakan") ?>"
+                                                    onclick="confirm('Yakin ingin menghapus data?');">
+                                                    <i class="bi bi-trash text-danger"></i></a>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -94,30 +99,30 @@
     <!-- Close Main JS -->
 
     <script>
-        // Tampilkan Tabel
-        $(document).ready(function() {
-            show_table();
-        });
+    // Tampilkan Tabel
+    $(document).ready(function() {
+        show_table();
+    });
 
-        function show_table() {
-            $('#tabellaporan').DataTable({
-                "bDestroy": true,
-                "processing": true,
-                "responsive": true,
-                "order": [],
-                "columnDefs": [{
-                    "targets": [0],
-                    "className": "dt-left",
-                    "targets": "_all",
-                    "orderable": false,
-                }, ],
-                "aLengthMenu": [
-                    [5, 25, 50, 100, -1],
-                    [5, 25, 50, 100, "All"]
-                ],
-                "iDisplayLength": 5,
-            });
-        }
+    function show_table() {
+        $('#tabellaporan').DataTable({
+            "bDestroy": true,
+            "processing": true,
+            "responsive": true,
+            "order": [],
+            "columnDefs": [{
+                "targets": [0],
+                "className": "dt-left",
+                "targets": "_all",
+                "orderable": false,
+            }, ],
+            "aLengthMenu": [
+                [5, 25, 50, 100, -1],
+                [5, 25, 50, 100, "All"]
+            ],
+            "iDisplayLength": 5,
+        });
+    }
     </script>
 </body>
 

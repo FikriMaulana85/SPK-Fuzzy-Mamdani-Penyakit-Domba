@@ -115,6 +115,13 @@
                 </li>
 
                 <li class="sidebar-item ">
+                    <a href="<?= base_url("analisa/reset"); ?>" class='sidebar-link'>
+                        <i class="bi bi-eraser"></i>
+                        <span>Reset</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item ">
                     <a href="<?= base_url("login/logout"); ?>" class='sidebar-link'>
                         <i class="bi bi-box-arrow-in-right"></i>
                         <span>Keluar</span>

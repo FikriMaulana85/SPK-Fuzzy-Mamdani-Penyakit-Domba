@@ -125,4 +125,24 @@ class Analisa_model extends CI_Model
         $this->db->limit(1);
         return $this->db->get()->row();
     }
+
+    public function delete($kode_peternakan)
+    {
+        if ($this->db->delete('tbl_hasil', array('kode_peternakan' => $kode_peternakan)) && $this->db->delete('tbl_peternakan', array('kode_peternakan' => $kode_peternakan)) && $this->db->delete('tmp_gejala', array('kode_peternakan' => $kode_peternakan)) && $this->db->delete('tmp_rules', array('kode_peternakan' => $kode_peternakan))) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil dihapus</div>');
+            redirect(site_url("laporan"));
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Data gagal dihapus</div>');
+            redirect(site_url("laporan"));
+        }
+    }
+
+    public function reset()
+    {
+        $this->db->empty_table('tbl_hasil');
+        $this->db->empty_table('tbl_peternakan');
+        $this->db->empty_table('tmp_gejala');
+        $this->db->empty_table('tmp_rules');
+        redirect(site_url("dashboard"));
+    }
 }

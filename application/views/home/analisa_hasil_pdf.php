@@ -11,17 +11,23 @@
 <body>
     <div class=" card-body">
         <h3 style="text-align: center;">HASIL ANALISA</h3>
-        <table class="table table-borderless">
+        <table class="table table-borderless table-responsive" width="500px">
             <tbody>
+                <tr>
+                    <td>
+                        <hr>
+                    </td>
+                </tr>
                 <tr>
                     <td><b>Data yang diinputkan</b></td>
                 </tr>
                 <?php
-                $fuzzyfikasi = $this->db->select("*")->from("tmp_gejala")->join('tbl_gejala', 'tbl_gejala.kode_gejala = tmp_gejala.kode_gejala')->where("kode_peternakan", $this->uri->segment(3))->order_by("tmp_gejala.kode_gejala ASC")->limit("5")->get()->result();
+                $fuzzyfikasi = $this->db->select("*")->from("tmp_gejala")->where("kode_peternakan", $this->uri->segment(3))->order_by("kode_gejala ASC")->limit("8")->get()->result();
                 foreach ($fuzzyfikasi as $fuzzyfikasi) :
+
                 ?>
                 <tr>
-                    <td>(<?= $fuzzyfikasi->kode_gejala ?>) - <?= $fuzzyfikasi->desc_gejala ?> :
+                    <td>Input Range Gejala (<?= $fuzzyfikasi->kode_gejala ?>) :
                         <?= $fuzzyfikasi->bobot_gejala ?>
                     </td>
                 </tr>
@@ -50,6 +56,7 @@
                     } else {
                         $name_of_members = "Tidak Ada";
                     }
+
                     $data_update_anggota = [
                         'ringan' => AnggotaRingan($fuzzyfikasi->bobot_gejala),
                         'agak_parah' => AnggotaParah($fuzzyfikasi->bobot_gejala),
@@ -60,6 +67,10 @@
                     $this->db->where("kode_peternakan", $this->uri->segment(3));
                     $this->db->update("tmp_gejala", $data_update_anggota);
                 endforeach; ?>
+
+                <?php
+                $fuzzyfikasi1 = $this->db->select("*")->from("tmp_gejala")->where("kode_peternakan", $this->uri->segment(3))->order_by("kode_gejala ASC")->get()->result();
+                ?>
                 <?php
                 $get_kode_gejala = $this->db->select("*")->from("tmp_gejala")->where("kode_peternakan", $this->uri->segment(3))->get()->result();
                 $rules = $this->db->select("*")->from("tbl_rules")
@@ -73,6 +84,7 @@
                     ->where("kode_gejala8", $get_kode_gejala[0]->kode_gejala)
                     ->get()->result();
 
+                // echo $get_kode_gejala[7]->kode_gejala;
                 $penyakit = $this->db->select("*")->from("tbl_rules")
                     ->where("kode_gejala1", $get_kode_gejala[7]->kode_gejala)
                     ->where("level_gejala1", $get_kode_gejala[7]->level)
@@ -93,10 +105,11 @@
                     ->order_by("id_rules DESC")
                     ->limit("1")
                     ->get()->row();
+
+                // print_r($penyakit);
                 $no = 1;
                 foreach ($rules as $rule) :
                 ?>
-
                 <?php
                     if (count($get_kode_gejala) > 2) {
 
@@ -118,9 +131,7 @@
                             )
                         );
                     ?>
-
                 <?php } ?>
-
                 <?php
                     $data = [
                         'id_tmp_rules' => null,
@@ -128,6 +139,7 @@
                         'kode_rules' => $rule->kode_rules,
                         'bobot_rules' => min($this->analisa_model->GetNilaiTmp($rule->kode_gejala1, $rule->level_gejala1, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala2, $rule->level_gejala2, $this->uri->segment(3)), $this->analisa_model->GetNilaiTmp($rule->kode_gejala3, $rule->level_gejala3, $this->uri->segment(3))),
                     ];
+                    // echo $this->rules_model->TmpRulesByID($this->uri->segment(3))->num_rows();
                     if ($this->rules_model->TmpRulesByID($this->uri->segment(3))->num_rows() <= count($rules)) {
                         $this->db->insert("tmp_rules", $data);
                     }
@@ -161,6 +173,7 @@
                     $this->db->insert("tbl_hasil", $data_simpan_hasil);
                 }
                 $kesimpulan =  $this->db->select("*")->from("tbl_hasil")->join('tbl_penyakit', 'tbl_penyakit.nama_penyakit = tbl_hasil.nama_penyakit')->join('tbl_peternakan', 'tbl_peternakan.kode_peternakan = tbl_hasil.kode_peternakan')->where("tbl_hasil.kode_peternakan", $this->uri->segment(3))->get()->row();
+                // print_r($kesimpulan);
                 ?>
                 <tr>
                     <td>=============================================================</td>
@@ -202,7 +215,7 @@
                     <td>
 
                         Kesimpulan :
-                        Terdiagnosa Penyakit <?= $kesimpulan->nama_penyakit ?> sebesar
+                        Terdiagnosa Penyakit <?= $nama_penyakit ?> sebesar
                         <?= $centroid ?>%
                     </td>
                 </tr>
@@ -216,9 +229,7 @@
                         Solusi : <?= $kesimpulan->solusi_penyakit ?>
                     </td>
                 </tr>
-
-    </div>
-    </table>
+        </table>
     </div>
 </body>
 
